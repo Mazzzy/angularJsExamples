@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>Angular First Example</title>
+    <script src="../../lib/angular.js"></script>
+  </head>
+  <body ng-app>
+    <div ng-controller="msgController">
+     <input type="text" ng-model="greeting.text"/>
+     <p>Welcome by {{greeting.text}}</p>
+    </div>
+  </body>
+</html>
+<script type="text/javascript">
+function msgController($scope){
+  $scope.greeting = {text:"Mazahar"}
+}
+</script>
+
+
+
+
