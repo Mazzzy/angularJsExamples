@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Angular Show Hide Demo using Classes </title>
+  <style>   
+   .selected{
+	background:#FFB7B7;
+    font-weight:bold;
+   }
+  </style>
+  <script src="../../lib/angular.js"></script>
+ </head>
+ <body>
+  <div ng-app>
+    <table ng-controller="restaurantController">
+     <tr>
+      <th>Sr. No.</th>
+      <th>Menu Name</th>
+      <th>Cuisine</th>
+     </tr>
+     <tr ng-repeat="item in directory" ng-click="selectRestaurant($index)" ng-class="{selected: $index==selectedRow}">
+      <td>{{$index+1}}</td>
+      <td ng-bind="item.name"></td>
+      <td data-ng-bind="item.cuisine"></td>
+     </tr>
+    </table>
+  </div>
+ </body>
+</html>
+<script type="text/javascript">
+function restaurantController($scope){
+ $scope.directory = [
+  {name:"The Handsome Heifer", cuisine:"BBQ"},
+  {name:"Green's Green Greens", cuisine:"Salads"},
+  {name:"House of Fine Fish", cuisine:"Seafood"},
+ ];
+ 
+ $scope.selectRestaurant = function(givenRow){
+  $scope.selectedRow = true;
+ };
+}
+</script>

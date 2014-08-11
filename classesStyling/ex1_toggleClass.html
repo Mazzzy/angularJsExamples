@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Angular Show Hide Demo using Classes </title>
+  <style>
+   
+   .menuItems li{
+	 width:20%;
+   }
+   .menu-disabled-true {
+	 background:#FFC;
+	 color: #609;
+	 font-weight:bold;
+   }
+  </style>
+  <script src="../../lib/angular.js"></script>
+ </head>
+ <body>
+  <div ng-app>
+    <div ng-controller="menuController">
+      <ul class="menuItems">
+       <li class="menu-disabled-{{isDisabled}}" ng-click="toggleClass()">Item Element One</li>
+       <li>Item Element Two</li>
+       <li>Item Element Three</li>       
+      </ul>
+    </div>
+  </div>
+ </body>
+</html>
+<script type="text/javascript">
+function menuController($scope){
+  $scope.isDisabled = true;
+  
+  $scope.toggleClass = function(){
+	//$scope.isDisabled = false;
+	$scope.isDisabled = !$scope.isDisabled;
+  };
+}
+</script>

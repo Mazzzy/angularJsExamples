@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Angular Show Hide Demo using Classes </title>
+  <style>
+   
+   .error{
+	background:#FFB7B7;
+    font-weight:bold;
+   }
+   .warning {
+	 background:#FFFFB7;
+	 font-weight:bold;
+   }
+  </style>
+  <script src="../../lib/angular.js"></script>
+ </head>
+ <body>
+  <div ng-app>
+    <div ng-controller="classController">
+     <div ng-class="{error : isError, warning : isWarning}">{{givenText}}</div>
+     <button ng-click="addError()">Show Error</button>
+     <button ng-click="addWarning()">Show Warning</button>
+    </div>
+  </div>
+ </body>
+</html>
+<script type="text/javascript">
+function classController($scope){
+  $scope.isError = false;
+  $scope.isWarning = false;
+  $scope.givenText = "Alive is Awesome ";
+  
+  $scope.addError = function(){
+	$scope.isError = true;
+	$scope.isWarning = false;
+	$scope.givenText = " Error :( ";	
+  };
+  
+  $scope.addWarning = function(){
+    $scope.isError = false;
+	$scope.isWarning = true;
+	$scope.givenText = "  Warning Carry on :) ";
+  };
+}
+</script>
