@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>AngularJS custome Directive</title>
+    <script src="../../lib/angular.js"></script>
+  </head>
+  <body>
+    <div ng-app="mydirectiveApp" ng-controller="dirController">      
+     <button ng-click="clickUnfocused()">Not focused</button>
+     <button ngbk-focus ng-click="clickFocused()">I'm very focused!</button>
+     <div>{{message.text}}</div>     
+    </div>
+  </body>
+</html>
+<script type="text/javascript">
+ var dirModule = angular.module("mydirectiveApp",[])
+ dirModule.directive("ngbkFocus", function(){
+   return {
+    link: function(scope, element, attrs, controller) {
+            element[0].focus();
+          }
+   };
+ });
+ dirModule.controller("dirController",['$scope', function($scope){
+   $scope.message = { text: 'nothing clicked yet' };
+   
+   $scope.clickUnfocused = function(){
+	 $scope.message.text = 'unfocused button clicked';
+   }
+   
+   $scope.clickFocused = function(){
+	 $scope.message.text = 'focus button clicked';
+   }
+   
+ }]);
+</script>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>AngularJS Custom Directive</title>
+    <script src="../../lib/angular.js"></script>
+  </head>
+  <body ng-app="myApp">
+    <div ng-controller="msgController">
+     <input type="text" ng-model="greeting.text"/>
+     <p>Welcome by {{greeting.text}}</p>
+    </div>
+    <div ng-sparkline></div>
+  </body>
+</html>
+<script type="text/javascript">
+var app = angular.module("myApp",[]);
+app.directive('ngSparkline', function() {
+  return {
+    restrict: 'A',
+    template: '<div class="sparkline">Hello Spark</div>'
+  }
+});
+
+function msgController($scope){
+  $scope.greeting = {text:"Mazahar"}
+}
+
+
+/*
+
+'A' - <span ng-sparkline></span>
+'E' - <ng-sparkline></ng-sparkline>
+'C' - <span class="ng-sparkline"></span>
+'M' - <!-- directive: ng-sparkline -->
+
+ */
+
+</script>

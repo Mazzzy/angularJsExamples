@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>AngularJS Form Validations</title>
+    <style type="text/css">
+    .ng-invalid {
+      border-color: red;
+    }
+    </style>
+    <script src="../../lib/angular.js"></script>
+  </head>
+  <body>
+    <div ng-app="formValidationApp">
+     <h1>Form Validations</h1>
+     <form name="addUserform" ng-controller="addUsercontroller">
+      <div ng-show='message'>{{message}}</div>
+      <div>First name: <input name='firstName' ng-model='user.first' required></div>
+      <div>Last name: <input name='lastName' ng-model='user.last' required></div>
+      <div>Email: <input type='email' ng-model='user.email' required></div>
+      <div>Age: <input type='number'  ng-model='user.age' ng-maxlength='3' ng-minlength='1'></div>
+      <div><button ng-click='addUser()' ng-disabled='!addUserform.$valid'>Submit</button></div>
+     </form>      
+    </div>
+  </body>
+</html>
+<script type="text/javascript">
+ var formValidApp = angular.module("formValidationApp",[]);
+ formValidApp.controller("addUsercontroller",function ($scope){
+	$scope.message = '';
+    $scope.addUser = function () {
+		// TODO for the reader: actually save user to database...
+      $scope.message = 'Thanks, ' + $scope.user.first + ', we added you!';
+    };
+ });
+</script>

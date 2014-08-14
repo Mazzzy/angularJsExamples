@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>AngularJS Custom Directive</title>
+    <script src="../../lib/angular.js"></script>
+  </head>
+  <body ng-app>
+   <div>
+    <form ng-controller="insertController">
+      Add Person: <input ng-model="newPerson.name">
+	  <input type="button" value="Add" ng-click="addPerson()"/>
+    </form>
+   </div>
+   <div ng-controller="viewPersons">
+   <h1>List of Persons</h1>
+   <table border="0" cellspacing="2" cellpadding="2">
+    <tr>
+     <th>Name</th>
+     <th>Id</th>  
+     <th>Action</th>
+    </tr>
+    <tr ng-repeat = 'x in persons'>
+     <td><span>{{x.name}}</span></td>
+     <td><span>{{x.id}}</span></td>
+     <td><input type="button" value="Remove" ng-click="removePerson($index)"/></td>     
+    </tr>
+   </table>   
+  </div>
+  </body>
+</html>
+
+<!-- 
+ The ng-repeat directive also gives you references to the index of the current element
+ via $index, and booleans that tell you if you’re on the first element, somewhere in the
+ middle, or the last element of the collection with $first, $middle, and $last.
+-->
+
+<script type="text/javascript">
+var defaultPersons = [
+ {name:'Mazahar Shaikh', id:'1'},
+ {name:'Mohasin Shaikh', id:'2'},
+ {name:'Ashpakh Khan', id:'3'}
+];
+
+function insertController($scope){
+  $scope.cnt = defaultPersons.length;
+  $scope.newPerson = {name:"None",id:""};
+  $scope.addPerson = function () {
+    $scope.cnt+=1;
+	var addp = {name:$scope.newPerson.name,id:$scope.cnt};
+	defaultPersons.push(addp);
+  };
+}
+
+function viewPersons($scope){
+ $scope.persons = defaultPersons;	
+ 
+ $scope.removePerson = function(givenIndx){
+  defaultPersons.splice(givenIndx,1);	
+ };
+}
+</script>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>AngularJS Custom Directive</title>
+    <script src="../../lib/angular.js"></script>
+  </head>
+  <body ng-app>
+    <div ng-controller="checkboxController">
+     <input type="checkbox" ng-model="youCheckedIt"/>Check Status
+     <p>Status {{youCheckedIt}}</p>
+    </div>
+  </body>
+</html>
+<script type="text/javascript">
+function checkboxController($scope){
+  $scope.youCheckedIt = true; // set by default scope  
+}
+</script>

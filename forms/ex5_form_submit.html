@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>AngularJS Form Events </title>
+    <script src="../../lib/angular.js"></script>
+  </head>
+  <body>
+   <div class="wrapper" ng-app="formApp">
+    <form ng-submit="requestFunding()" ng-controller="formController">
+      Starting: <input ng-model="funding.startValue">
+      Recommendation: {{funding.needed}}<br/>
+      <button>Fund my startup!</button>
+      <input type="reset" value="Refill" ng-click="refillForm()" />
+    </form>
+   </div>
+  </body>
+</html>
+<script type="text/javascript">
+
+angular.module("formApp",[])
+ .controller("formController",function formController($scope){
+   $scope.funding = { startValue: 0 };
+  
+   $scope.computeNeeded = function() {
+	$scope.funding.needed = $scope.funding.startValue * 10;
+   };
+  
+   $scope.$watch('funding.startValue', $scope.computeNeeded);
+   
+   $scope.requestFunding = function(){
+	 alert("Form Submit Called");
+   };
+   
+   $scope.refillForm = function(){
+	 $scope.funding.startValue = 0;
+   };
+ });
+</script>

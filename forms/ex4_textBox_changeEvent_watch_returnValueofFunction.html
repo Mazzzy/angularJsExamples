@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>AngularJS Custom Directive</title>
+    <script src="../../lib/angular.js"></script>
+  </head>
+  <body ng-app>
+    <form ng-controller="StartUpController">
+      Starting: <input ng-model="funding.startingEstimate">
+      Recommendation: {{funding.needed}}
+    </form>
+  </body>
+</html>
+<script type="text/javascript">
+function StartUpController($scope){
+  $scope.funding = { startingEstimate: 0 };
+  
+  $scope.computeNeeded = function() {
+	$scope.funding.needed = $scope.funding.startingEstimate * 10;
+  };
+  
+  $scope.$watch('funding.startingEstimate', $scope.computeNeeded);
+}
+</script>
