@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>AngularJS Simple Service and Module</title>  
+  <script src="../../lib/angular.js"></script>
+ </head>
+ <body ng-app="shopApp">
+  <div ng-controller="myshoppingCart">
+   <h1>Your Shopping Details</h1>
+   <table border="0" cellspacing="2" cellpadding="2">
+    <tr>
+     <th>Name</th>
+     <th>Category</th>
+     <th>Unit Price</th>
+     <th>Quantity</th>
+     <th>Calculated Price</th>     
+     <th>Action</th>     
+    </tr>
+    <tr ng-repeat = 'x in items'>
+     <td><span>{{x.name}}</span></td>
+     <td><span>{{x.category}}</span></td>
+     <td><span>{{x.price}}</span></td>
+     <td><input type="text" ng-model="quantity"/></td>
+     <td><span>{{ x.price * quantity | currency}}</span></td>
+     <td><input type="button" value="Remove" ng-click="removeProduct(x)"/></td>     
+    </tr>
+   </table>   
+  </div>    
+ </body>
+</html>
+<script type="text/javascript">
+ 
+ var myModule = angular.module("shopApp",[]);
+ 
+ myModule.factory('shopingItems', function() {
+  var items = {};
+  items.query = function() {
+	// In real apps, we'd pull this data from the server...
+	return [
+	{ name : "Pen" , category : "ABC", price:"5" },
+	{ name : "Pencil" , category : "ABC", price:"3" },
+	{ name : "Notebook" , category : "ABC", price:"20" },
+	{ name : "Mobile Phone" , category : "XYZ", price:"2000" },
+	{ name : "Chair" , category : "Furniture", price:"12000" }
+	];
+  };
+  return items;
+ });
+ 
+ function myshoppingCart(shopingItems, $scope){
+   $scope.quantity = 0;
+   
+   $scope.items = shopingItems.query(); // get data from service
+   
+   $scope.removeProduct = function(givenIndx){
+	 var result = confirm("Really want to remove");
+	 if(result){
+		 $scope.items.splice(givenIndx,1);
+	 }
+   }
+  
+ }
+</script>
+
+
+
+

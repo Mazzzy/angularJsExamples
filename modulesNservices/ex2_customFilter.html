@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>AngularJS Custom Filter</title>  
+  <script src="../../lib/angular.js"></script>
+ </head>
+ <body ng-app="customFilterApp">
+  <div ng-controller="filterController">      
+   <h1>{{pageHeading | titleCase}}</h1>  <!-- custom filter -->
+   <h5>Price {{12.9 | currency  }}</h5> <!-- built in filter -->
+  </div>    
+ </body>
+</html>
+<script type="text/javascript">
+ 
+ var myModule = angular.module("customFilterApp",[]);
+ 
+ myModule.filter('titleCase', function() {
+	var titleCaseFilter = function(input) {
+	   var words = input.split(' ');
+	   for (var i = 0; i < words.length; i++) {
+	     words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+	   }
+	   return words.join(' ');
+	};
+	return titleCaseFilter;
+ });
+ 
+ function filterController($scope){
+  $scope.pageHeading = 'behold the majesty of your page title';  
+ }
+ 
+</script>
+
+
+
+
